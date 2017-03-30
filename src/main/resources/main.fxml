@@ -1,0 +1,3 @@
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<HBox spacing="10"/>
