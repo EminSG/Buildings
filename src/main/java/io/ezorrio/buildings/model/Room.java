@@ -7,7 +7,7 @@ public class Room {
     private String id;
     private double capacity;
 
-    public Room(double capacity){
+    public Room(double capacity) {
         this.capacity = capacity;
     }
 
@@ -16,7 +16,7 @@ public class Room {
         this.capacity = capacity;
     }
 
-    public void setId(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -28,7 +28,7 @@ public class Room {
         return capacity;
     }
 
-    public int getRoomLevel(){
+    public int getRoomLevel() {
         return Integer.parseInt(id.substring(0, id.indexOf('-')));
     }
 }

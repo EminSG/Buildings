@@ -1,7 +1,6 @@
 package io.ezorrio.buildings.model;
 
 import io.ezorrio.buildings.db.DBHelper;
-import io.ezorrio.buildings.exception.NoSpaceOnLevelException;
 
 import java.util.ArrayList;
 
@@ -12,15 +11,15 @@ public class Building {
     private ArrayList<Level> levels;
 
 
-    public Building(){
+    public Building() {
         this.levels = new ArrayList<Level>();
     }
 
-    public boolean isLevelFull(int level){
+    public boolean isLevelFull(int level) {
         return getLevel(level).isLevelFull();
     }
 
-    public Level getLevel(int level){
+    public Level getLevel(int level) {
         return levels.get(level);
     }
 
@@ -28,21 +27,21 @@ public class Building {
         return levels.size() - 1;
     }
 
-    public void addLevel(Level level){
+    public void addLevel(Level level) {
         level.setId(levels.size() + 1);
         levels.add(level);
     }
 
-    public void addRoom(Room room){
+    public void addRoom(Room room) {
         addRoom(room, getBuildingSize());
     }
 
-    public void addRoom(Room room, int level){
+    public void addRoom(Room room, int level) {
         getLevel(level).addRoom(room);
     }
 
     private boolean checkIfBuiltRight() {
-        for (int i=0; i< levels.size(); i++) {
+        for (int i = 0; i < levels.size(); i++) {
             if (!isLevelFull(i)) {
                 return false;
             }
@@ -50,7 +49,7 @@ public class Building {
         return true;
     }
 
-    private void saveBuilding(){
+    private void saveBuilding() {
         DBHelper helper = new DBHelper();
         for (Level level : levels) {
             helper.addLevel(level);
@@ -74,8 +73,8 @@ public class Building {
         }
     }
 
-    public void save(){
-        if (checkIfBuiltRight()){
+    public void save() {
+        if (checkIfBuiltRight()) {
             saveBuilding();
         } else {
             System.out.println("Incorrect building");

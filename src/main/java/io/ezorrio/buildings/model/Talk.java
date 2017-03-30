@@ -3,13 +3,13 @@ package io.ezorrio.buildings.model;
 /**
  * Created by golde on 30.03.2017.
  */
-public class Talk extends Room{
+public class Talk extends Room {
     private boolean canHaveFire;
     private int fireCount;
     private boolean canPresentate;
     private boolean isUsed;
 
-    public Talk(double capacity, boolean canHaveFire, int fireCount, boolean canPresentate, boolean isUsed){
+    public Talk(double capacity, boolean canHaveFire, int fireCount, boolean canPresentate, boolean isUsed) {
         super(capacity);
         this.canHaveFire = canHaveFire;
         this.fireCount = fireCount;
@@ -21,7 +21,7 @@ public class Talk extends Room{
         return fireCount;
     }
 
-    public boolean isUsed(){
+    public boolean isUsed() {
         return isUsed;
     }
 
@@ -29,7 +29,7 @@ public class Talk extends Room{
         return canHaveFire;
     }
 
-    public boolean canPresentate(){
+    public boolean canPresentate() {
         return canPresentate;
     }
 }

@@ -16,7 +16,7 @@ public class Special extends Room {
      * @param type one of constant value(SERVER/SECURITY/CONTAINER)
      */
 
-    public Special(double capacity, boolean canHaveFire, int fireCount, int type){
+    public Special(double capacity, boolean canHaveFire, int fireCount, int type) {
         super(capacity);
         this.canHaveFire = canHaveFire;
         this.fireCount = fireCount;
@@ -31,7 +31,7 @@ public class Special extends Room {
         return type;
     }
 
-    public boolean canHaveFire(){
+    public boolean canHaveFire() {
         return canHaveFire;
     }
 

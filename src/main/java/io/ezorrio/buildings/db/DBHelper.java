@@ -102,7 +102,7 @@ public class DBHelper {
         }
     }
 
-    public void deleteEntry(String sql, int id){
+    public void deleteEntry(String sql, int id) {
         try {
             PreparedStatement pstmt = mConnection.prepareStatement(sql);
             pstmt.setInt(1, id);
@@ -126,7 +126,7 @@ public class DBHelper {
         try {
             PreparedStatement pstmt = mConnection.prepareStatement(sql);
             pstmt.setInt(1, level.getId());
-            pstmt.setDouble(2,level.getCapacity());
+            pstmt.setDouble(2, level.getCapacity());
             pstmt.setInt(3, 0);
             pstmt.setInt(4, 0);
             pstmt.setInt(5, 0);
@@ -137,7 +137,7 @@ public class DBHelper {
         }
     }
 
-    public void deleteLevel(int id){
+    public void deleteLevel(int id) {
         String sql = "DELETE FROM " + LEVEL_TABLE + " WHERE id = ?";
         deleteEntry(sql, id);
     }
@@ -172,7 +172,7 @@ public class DBHelper {
         }
     }
 
-    private void deleteOfficeRoom(int id){
+    private void deleteOfficeRoom(int id) {
         String sql = "DELETE FROM " + OFFICE_TABLE + " WHERE id = ?";
         deleteEntry(sql, id);
     }
@@ -204,7 +204,7 @@ public class DBHelper {
         }
     }
 
-    private void deleteTalkRoom(int id){
+    private void deleteTalkRoom(int id) {
         String sql = "DELETE FROM " + TALK_TABLE + " WHERE id = ?";
         deleteEntry(sql, id);
     }
@@ -234,12 +234,13 @@ public class DBHelper {
         }
     }
 
-    private void deleteSpecialRoom(int id){
+    private void deleteSpecialRoom(int id) {
         String sql = "DELETE FROM " + SPECIAL_TABLE + " WHERE id = ?";
         deleteEntry(sql, id);
     }
 
-    private void dropAllTables(){}
+    private void dropAllTables() {
+    }
 
 
 }

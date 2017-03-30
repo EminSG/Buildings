@@ -13,14 +13,14 @@ package io.ezorrio.buildings.model;
     2.2.1.6. Аренда / собственность.
     2.2.1.7. Количество офисов в нутрии данного офиса – вычисляемый параметр.
      */
-public class Office extends Room{
+public class Office extends Room {
     private boolean canHaveFire;
     private int fireCount;
     private String name;
     private boolean isOwner;
     private int innerOffices;
 
-    public Office(int capacity, boolean canHaveFire, int fireCount, String name, boolean isOwner, int innerOffices){
+    public Office(int capacity, boolean canHaveFire, int fireCount, String name, boolean isOwner, int innerOffices) {
         super(capacity);
         this.canHaveFire = canHaveFire;
         this.fireCount = fireCount;
@@ -37,11 +37,11 @@ public class Office extends Room{
         return name;
     }
 
-    public boolean isOwner(){
+    public boolean isOwner() {
         return isOwner;
     }
 
-    public boolean canHaveFire(){
+    public boolean canHaveFire() {
         return canHaveFire;
     }
 
