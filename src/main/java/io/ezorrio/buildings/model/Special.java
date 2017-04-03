@@ -4,8 +4,6 @@ package io.ezorrio.buildings.model;
  * Created by golde on 30.03.2017.
  */
 public class Special extends Room {
-    private boolean canHaveFire;
-    private int fireCount;
     private int type;
 
     public static final int SERVER = 0;
@@ -17,33 +15,36 @@ public class Special extends Room {
      */
 
     public Special(double capacity, boolean canHaveFire, int fireCount, int type) {
-        super(capacity);
-        this.canHaveFire = canHaveFire;
-        this.fireCount = fireCount;
+        super(capacity, canHaveFire, fireCount);
         this.type = type;
-    }
-
-    public int getFireCount() {
-        return fireCount;
     }
 
     public int getType() {
         return type;
     }
 
-    public boolean canHaveFire() {
-        return canHaveFire;
-    }
-
-    public void setFireCount(int fireCount) {
-        this.fireCount = fireCount;
-    }
-
-    public void setCanHaveFire(boolean canHaveFire) {
-        this.canHaveFire = canHaveFire;
-    }
-
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String typeToString(){
+        switch (type){
+            case 0:
+                return "server";
+            case 1:
+                return "security";
+            case 2:
+                return "container";
+            default:
+                return "unknown";
+        }
+    }
+
+    public String getExtendedInfo(){
+        return getClass().getSimpleName() +
+                ": " + getId() +
+                "(capacity: " + getCapacity() +
+                ", fires count: " + getFireCount() +
+                ", type: " + typeToString();
     }
 }

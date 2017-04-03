@@ -14,23 +14,15 @@ package io.ezorrio.buildings.model;
     2.2.1.7. Количество офисов в нутрии данного офиса – вычисляемый параметр.
      */
 public class Office extends Room {
-    private boolean canHaveFire;
-    private int fireCount;
     private String name;
     private boolean isOwner;
     private int innerOffices;
 
     public Office(double capacity, boolean canHaveFire, int fireCount, String name, boolean isOwner, int innerOffices) {
-        super(capacity);
-        this.canHaveFire = canHaveFire;
-        this.fireCount = fireCount;
+        super(capacity, canHaveFire, fireCount);
         this.name = name;
         this.isOwner = isOwner;
         this.innerOffices = innerOffices;
-    }
-
-    public int getFireCount() {
-        return fireCount;
     }
 
     public String getName() {
@@ -41,20 +33,8 @@ public class Office extends Room {
         return isOwner;
     }
 
-    public boolean canHaveFire() {
-        return canHaveFire;
-    }
-
     public int getInnerOffices() {
         return innerOffices;
-    }
-
-    public void setCanHaveFire(boolean canHaveFire) {
-        this.canHaveFire = canHaveFire;
-    }
-
-    public void setFireCount(int fireCount) {
-        this.fireCount = fireCount;
     }
 
     public void setName(String name) {
@@ -63,5 +43,14 @@ public class Office extends Room {
 
     public void setOwner(boolean owner) {
         isOwner = owner;
+    }
+
+    public String getExtendedInfo() {
+        return getClass().getSimpleName() +
+                ": " + getId() +
+                "(capacity: " + getCapacity() +
+                ", fires count: " + getFireCount() +
+                ", name: " + getName() +
+                ", owner: " + isOwner + ")";
     }
 }

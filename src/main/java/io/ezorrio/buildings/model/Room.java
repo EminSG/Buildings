@@ -7,14 +7,13 @@ public class Room {
     private String id;
     private double capacity;
     private int roomLevel;
+    private boolean canHaveFire;
+    private int fireCount;
 
-    public Room(double capacity) {
+    public Room(double capacity, boolean canHaveFire, int fireCount) {
         this.capacity = capacity;
-    }
-
-    public Room(String id, int capacity) {
-        this.id = id;
-        this.capacity = capacity;
+        this.canHaveFire = canHaveFire;
+        this.fireCount = fireCount;
     }
 
     public void setId(String id) {
@@ -35,5 +34,30 @@ public class Room {
 
     public void setRoomLevel(int level){
         this.roomLevel = level;
+    }
+
+    public int getFireCount() {
+        return fireCount;
+    }
+
+    public boolean canHaveFire() {
+        return canHaveFire;
+    }
+
+    public void setFireCount(int fireCount) {
+        this.fireCount = fireCount;
+    }
+
+    public void setCanHaveFire(boolean canHaveFire) {
+        this.canHaveFire = canHaveFire;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + ": " + id + "(" + capacity + ")";
+    }
+
+    public String getInfo() {
+        return toString();
     }
 }

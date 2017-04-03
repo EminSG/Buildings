@@ -1,9 +1,11 @@
 package io.ezorrio.buildings.model;
 
 import io.ezorrio.buildings.db.DBHelper;
+import io.ezorrio.buildings.utils.Utils;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by golde on 30.03.2017.
@@ -22,6 +24,20 @@ public class Building {
 
     public Level getLevel(int level) {
         return levels.get(level);
+    }
+
+    public ArrayList<Level> getLevels(){
+        return levels;
+    }
+
+    public ArrayList<Room> getRooms(){
+        ArrayList<Room> result = new ArrayList<Room>();
+        for (Level level : levels){
+            for (Room room : level.getRooms()){
+                result.add(room);
+            }
+        }
+        return result;
     }
 
     public int getBuildingSize() {
@@ -75,6 +91,8 @@ public class Building {
             }
         }
     }
+
+
 
     public void save() {
         if (checkIfBuiltRight()) {
