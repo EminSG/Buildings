@@ -2,11 +2,9 @@ package io.ezorrio.buildings.search;
 
 import io.ezorrio.buildings.model.Building;
 import io.ezorrio.buildings.model.Room;
-import io.ezorrio.buildings.model.Special;
 import io.ezorrio.buildings.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 /**

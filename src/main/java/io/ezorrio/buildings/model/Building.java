@@ -1,11 +1,8 @@
 package io.ezorrio.buildings.model;
 
 import io.ezorrio.buildings.db.DBHelper;
-import io.ezorrio.buildings.utils.Utils;
 
-import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by golde on 30.03.2017.

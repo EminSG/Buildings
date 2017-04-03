@@ -1,7 +1,7 @@
 package io.ezorrio.buildings.model;
 
 import io.ezorrio.buildings.exception.NoSpaceOnLevelException;
-import javafx.scene.control.Label;
+
 
 import java.util.ArrayList;
 
