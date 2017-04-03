@@ -6,6 +6,7 @@ package io.ezorrio.buildings.model;
 public class Room {
     private String id;
     private double capacity;
+    private int roomLevel;
 
     public Room(double capacity) {
         this.capacity = capacity;
@@ -29,6 +30,10 @@ public class Room {
     }
 
     public int getRoomLevel() {
-        return Integer.parseInt(id.substring(0, id.indexOf('-')));
+        return roomLevel;
+    }
+
+    public void setRoomLevel(int level){
+        this.roomLevel = level;
     }
 }

@@ -1,11 +1,9 @@
 package io.ezorrio.buildings.db;
 
-import io.ezorrio.buildings.model.Level;
-import io.ezorrio.buildings.model.Office;
-import io.ezorrio.buildings.model.Special;
-import io.ezorrio.buildings.model.Talk;
+import io.ezorrio.buildings.model.*;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Created by golde on 30.03.2017.
@@ -13,16 +11,25 @@ import java.sql.*;
 public class DBHelper {
 
     private Connection mConnection;
-    private static final String DB_NAME = "jdbc:sqlite:C:/Buildings/Building.db";
-    private static final String OFFICE_TABLE = "office";
-    private static final String LEVEL_TABLE = "level";
-    private static final String SPECIAL_TABLE = "special";
-    private static final String TALK_TABLE = "talk";
+    private static final String DEFAULT_DB_NAME = "jdbc:sqlite:C:/Buildings/Building.db";
+    public static final String OFFICE_TABLE = "office";
+    public static final String LEVEL_TABLE = "level";
+    public static final String SPECIAL_TABLE = "special";
+    public static final String TALK_TABLE = "talk";
 
 
     public DBHelper() {
         try {
-            mConnection = DriverManager.getConnection(DB_NAME);
+            mConnection = DriverManager.getConnection(DEFAULT_DB_NAME);
+            createTables();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public DBHelper(String path) {
+        try {
+            mConnection = DriverManager.getConnection("jdbc:sqlite:" + path);
             createTables();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,6 +64,7 @@ public class DBHelper {
                 + " fire_count INTEGER,\n"
                 + " is_owner BOOLEAN,\n"
                 + " inner_offices INTEGER,\n"
+                + " level INTEGER,\n"
                 + "UNIQUE (id) ON CONFLICT REPLACE\n"
                 + ");";
 
@@ -71,6 +79,7 @@ public class DBHelper {
                 + " fire_count INTEGER,\n"
                 + " can_presentate BOOLEAN,\n"
                 + " is_used BOOLEAN,\n"
+                + " level INTEGER,\n"
                 + "UNIQUE (id) ON CONFLICT REPLACE\n"
                 + ");";
 
@@ -84,6 +93,7 @@ public class DBHelper {
                 + " can_have_fire BOOLEAN,\n"
                 + " fire_count INTEGER,\n"
                 + " type INTEGER,\n"
+                + " level INTEGER,\n"
                 + "UNIQUE (id) ON CONFLICT REPLACE\n"
                 + ");";
 
@@ -153,8 +163,8 @@ public class DBHelper {
      */
 
     public void addOfficeRoom(Office room) {
-        String sql = "INSERT INTO " + OFFICE_TABLE + "(id,name,capacity,can_have_fire,fire_count,is_owner,inner_offices)"
-                + " VALUES(?,?,?,?,?,?,? )";
+        String sql = "INSERT INTO " + OFFICE_TABLE + "(id,name,capacity,can_have_fire,fire_count,is_owner,inner_offices,level)"
+                + " VALUES(?,?,?,?,?,?,?,? )";
 
         try {
             PreparedStatement pstmt = mConnection.prepareStatement(sql);
@@ -165,6 +175,7 @@ public class DBHelper {
             pstmt.setInt(5, room.getFireCount());
             pstmt.setBoolean(6, room.isOwner());
             pstmt.setInt(7, room.getInnerOffices());
+            pstmt.setInt(8, room.getRoomLevel());
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -187,8 +198,8 @@ public class DBHelper {
      */
 
     public void addTalkRoom(Talk room) {
-        String sql = "INSERT INTO " + TALK_TABLE + "(id,capacity,can_have_fire,fire_count,can_presentate,is_used)"
-                + " VALUES(?,?,?,?,?,? )";
+        String sql = "INSERT INTO " + TALK_TABLE + "(id,capacity,can_have_fire,fire_count,can_presentate,is_used,level)"
+                + " VALUES(?,?,?,?,?,?,? )";
 
         try {
             PreparedStatement pstmt = mConnection.prepareStatement(sql);
@@ -198,6 +209,7 @@ public class DBHelper {
             pstmt.setInt(4, room.getFireCount());
             pstmt.setBoolean(5, room.canPresentate());
             pstmt.setBoolean(6, room.isUsed());
+            pstmt.setInt(7, room.getRoomLevel());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -218,8 +230,8 @@ public class DBHelper {
      */
 
     public void addSpecialRoom(Special room) {
-        String sql = "INSERT INTO " + SPECIAL_TABLE + "(id,capacity,can_have_fire,fire_count,type)"
-                + " VALUES(?,?,?,?,? )";
+        String sql = "INSERT INTO " + SPECIAL_TABLE + "(id,capacity,can_have_fire,fire_count,type,level)"
+                + " VALUES(?,?,?,?,?,? )";
 
         try {
             PreparedStatement pstmt = mConnection.prepareStatement(sql);
@@ -228,6 +240,7 @@ public class DBHelper {
             pstmt.setBoolean(3, room.canHaveFire());
             pstmt.setInt(4, room.getFireCount());
             pstmt.setInt(5, room.getType());
+            pstmt.setInt(6, room.getRoomLevel());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -242,5 +255,58 @@ public class DBHelper {
     private void dropAllTables() {
     }
 
+    public Building importFromDB() throws SQLException {
+        Building result = new Building();
+        ResultSet rsLevels = mConnection.createStatement().executeQuery("SELECT * FROM " + LEVEL_TABLE);
+        ResultSet rsOffices = mConnection.createStatement().executeQuery("SELECT * FROM " + OFFICE_TABLE);
+        ResultSet rsSpecials = mConnection.createStatement().executeQuery("SELECT * FROM " + SPECIAL_TABLE);
+        ResultSet rsTalk = mConnection.createStatement().executeQuery("SELECT * FROM " + TALK_TABLE);
 
+        while (rsLevels.next()) {
+            //"(id,capacity,room_count,offices_count,talk_count,special_count)"
+            Level level = new Level(rsLevels.getInt("id"),
+                    rsLevels.getDouble("capacity"));
+            result.addLevel(level);
+        }
+        ArrayList<Room> roomList = new ArrayList<Room>();
+        while (rsSpecials.next()) {
+            //id,capacity,can_have_fire,fire_count,type,level
+            Special special = new Special(rsSpecials.getDouble(2),
+                    rsSpecials.getBoolean(3),
+                    rsSpecials.getInt(4),
+                    rsSpecials.getInt(5));
+            int roomLevel = rsSpecials.getInt(6);
+            special.setId(rsSpecials.getString(1));
+            special.setRoomLevel(roomLevel);
+            result.getLevel(roomLevel).addRoom(special);
+        }
+
+        while (rsOffices.next()) {
+            //id,name,capacity,can_have_fire,fire_count,is_owner,inner_offices,level
+            Office office = new Office(rsOffices.getDouble(2),
+                    rsOffices.getBoolean(3),
+                    rsOffices.getInt(4),
+                    rsOffices.getString(5),
+                    rsOffices.getBoolean(6),
+                    rsOffices.getInt(7));
+            int roomLevel = rsOffices.getInt(8);
+            office.setId(rsOffices.getString(1));
+            office.setRoomLevel(roomLevel);
+            result.getLevel(roomLevel).addRoom(office);
+        }
+
+        while (rsTalk.next()) {
+            //id,capacity,can_have_fire,fire_count,can_presentate,is_used,level
+            Talk talk = new Talk(rsTalk.getDouble(2),
+                    rsTalk.getBoolean(3),
+                    rsTalk.getInt(4),
+                    rsTalk.getBoolean(5),
+                    rsTalk.getBoolean(6));
+            int roomLevel = rsTalk.getInt(7);
+            talk.setId(rsTalk.getString(1));
+            talk.setRoomLevel(roomLevel);
+            result.getLevel(roomLevel).addRoom(talk);
+        }
+        return result;
+    }
 }

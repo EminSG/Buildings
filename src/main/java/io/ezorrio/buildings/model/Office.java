@@ -20,7 +20,7 @@ public class Office extends Room {
     private boolean isOwner;
     private int innerOffices;
 
-    public Office(int capacity, boolean canHaveFire, int fireCount, String name, boolean isOwner, int innerOffices) {
+    public Office(double capacity, boolean canHaveFire, int fireCount, String name, boolean isOwner, int innerOffices) {
         super(capacity);
         this.canHaveFire = canHaveFire;
         this.fireCount = fireCount;

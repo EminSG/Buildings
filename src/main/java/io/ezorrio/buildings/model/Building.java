@@ -2,6 +2,7 @@ package io.ezorrio.buildings.model;
 
 import io.ezorrio.buildings.db.DBHelper;
 
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -33,10 +34,12 @@ public class Building {
     }
 
     public void addRoom(Room room) {
+        room.setRoomLevel(getBuildingSize());
         addRoom(room, getBuildingSize());
     }
 
     public void addRoom(Room room, int level) {
+        room.setRoomLevel(level);
         getLevel(level).addRoom(room);
     }
 

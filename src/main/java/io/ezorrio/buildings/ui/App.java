@@ -11,12 +11,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 /**
  * Created by golde on 30.03.2017.
  */
 public class App extends Application {
 
     public static void main(String[] args) {
+        //addEntriesToDB();
+        try {
+            Building building1 = new DBHelper().importFromDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        launch(args);
+    }
+
+    public static void addEntriesToDB(){
         Building building = new Building();
         building.addLevel(new Level(100));
         building.addRoom(new Office(30, true, 12, "LOL", true, 0));
@@ -27,9 +39,7 @@ public class App extends Application {
         building.addRoom(new Special(30, true, 12, Special.SERVER));
         building.addRoom(new Special(40, true, 12, Special.SERVER));
         building.save();
-        launch(args);
     }
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
