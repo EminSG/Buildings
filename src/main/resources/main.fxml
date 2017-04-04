@@ -1,3 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.collections.FXCollections?>
+
+
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.Button?>
-<HBox spacing="10"/>
+<?import javafx.scene.control.CheckMenuItem?>
+<VBox prefHeight="400.0" prefWidth="600.0" spacing="10" xmlns="http://javafx.com/javafx/8.0.112"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.ezorrio.buildings.ui.Controller">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem text="Save" fx:id="menu_save"/>
+                        <MenuItem text="Import_path" fx:id="menu_import"/>
+                        <MenuItem mnemonicParsing="false" text="Close"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <CheckMenuItem mnemonicParsing="false" text="Show as extended" fx:id="menu_show_extended"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <TabPane prefHeight="200.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Building Plan">
+                    <content>
+                        <AnchorPane fx:id="building_tab" minHeight="0.0" minWidth="0.0">
+                            <ListView fx:id="building_rooms"/>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Search and Filter">
+                    <content>
+                        <AnchorPane fx:id="search_tab" minHeight="0.0" minWidth="0.0">
+                            <VBox spacing="10">
+                                <HBox spacing="10">
+                                    <TextField fx:id="search_value"/>
+                                    <MenuButton fx:id="search_criteria_menu">
+                                        <items>
+                                            <MenuItem mnemonicParsing="false" onAction="#setByCapacity"
+                                                      text="By capacity"/>
+                                            <MenuItem mnemonicParsing="false" onAction="#setByRoomNumber"
+                                                      text="By room number"/>
+                                            <MenuItem mnemonicParsing="false" onAction="#setByFireCount"
+                                                      text="By fire sensors"/>
+                                        </items>
+                                    </MenuButton>
+
+                                    <MenuButton fx:id="search_criteria_compare">
+                                        <items>
+                                            <MenuItem mnemonicParsing="false" onAction="#setSearchMore"
+                                                      text="More"/>
+                                            <MenuItem mnemonicParsing="false" onAction="#setSearchLess"
+                                                      text="Less"/>
+                                            <MenuItem mnemonicParsing="false" onAction="#setSearchEqual"
+                                                      text="Equals"/>
+                                        </items>
+                                    </MenuButton>
+                                    <Button fx:id="button_search" text="Search!"/>
+                                </HBox>
+                                <ListView fx:id="search_results"/>
+                            </VBox>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Modify">
+                    <content>
+                        <AnchorPane fx:id="modify_tab" minHeight="0.0" minWidth="0.0"/>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</VBox>

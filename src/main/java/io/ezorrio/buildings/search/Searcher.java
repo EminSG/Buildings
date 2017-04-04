@@ -17,7 +17,7 @@ public class Searcher {
         this.building = building;
     }
 
-    public List<String> getAllRoomsInfo(boolean showExtended) {
+    public ArrayList<String> getAllRoomsInfo(boolean showExtended) {
         ArrayList<String> result = new ArrayList<String>();
         for (Room room : building.getRooms()) {
             result.add(Utils.getRoomInfo(room, showExtended));
@@ -25,7 +25,7 @@ public class Searcher {
         return result;
     }
 
-    public List<String> getRoomsInfoFromLevel(int level, boolean showExtended) {
+    public ArrayList<String> getRoomsInfoFromLevel(int level, boolean showExtended) {
         ArrayList<String> result = new ArrayList<String>();
         for (Room room : building.getLevel(level).getRooms()) {
             result.add(Utils.getRoomInfo(room, showExtended));
@@ -39,7 +39,7 @@ public class Searcher {
         int BY_FIRE_SENSOR = 2;
     }
 
-    public List<String> sortRooms(final int criteria, boolean showExtended) {
+    public ArrayList<String> sortRooms(final int criteria, boolean showExtended) {
         building.getRooms().sort((o1, o2) -> {
             switch (criteria) {
                 case BuildingShowCriteria.BY_CAPACITY:
@@ -60,48 +60,48 @@ public class Searcher {
         int EQUAL = 0;
     }
 
-    public List<String> filterRooms(final int criteria, final int filterType, Object filterValue, boolean showAsExtended) {
+    public ArrayList<String> filterRooms(final int criteria, final int filterType, String filterValue, boolean showAsExtended) {
         ArrayList<String> result = new ArrayList<>();
         for (Room room : building.getRooms()) {
             switch (criteria) {
                 case BuildingShowCriteria.BY_CAPACITY:
                     switch (filterType) {
                         case FilterType.MORE:
-                            if (room.getCapacity() > (double) filterValue) {
+                            if (room.getCapacity() > Double.parseDouble(filterValue)) {
                                 result.add(Utils.getRoomInfo(room, showAsExtended));
                             }
                             break;
                         case FilterType.LESS:
-                            if (room.getCapacity() < (double) filterValue) {
+                            if (room.getCapacity() < Double.parseDouble(filterValue)) {
                                 result.add(Utils.getRoomInfo(room, showAsExtended));
                             }
                             break;
                         case FilterType.EQUAL:
-                            if (room.getCapacity() == (double) filterValue) {
+                            if (room.getCapacity() == Double.parseDouble(filterValue)) {
                                 result.add(Utils.getRoomInfo(room, showAsExtended));
                             }
                             break;
                     }
                     break;
                 case BuildingShowCriteria.BY_ROOM_NUMBER:
-                    if (room.getId().contains((CharSequence) filterValue)) {
+                    if (room.getId().contains(filterValue)) {
                         result.add(Utils.getRoomInfo(room, showAsExtended));
                     }
                     break;
                 case BuildingShowCriteria.BY_FIRE_SENSOR:
                     switch (filterType) {
                         case FilterType.MORE:
-                            if (room.getFireCount() > (int) filterValue) {
+                            if (room.getFireCount() > Integer.parseInt(filterValue)) {
                                 result.add(Utils.getRoomInfo(room, showAsExtended));
                             }
                             break;
                         case FilterType.LESS:
-                            if (room.getFireCount() < (int) filterValue) {
+                            if (room.getFireCount() < Integer.parseInt(filterValue)) {
                                 result.add(Utils.getRoomInfo(room, showAsExtended));
                             }
                             break;
                         case FilterType.EQUAL:
-                            if (room.getFireCount() == (int) filterValue) {
+                            if (room.getFireCount() == Integer.parseInt(filterValue)) {
                                 result.add(Utils.getRoomInfo(room, showAsExtended));
                             }
                             break;

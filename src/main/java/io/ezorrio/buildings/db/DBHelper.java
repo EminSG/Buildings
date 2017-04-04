@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DBHelper {
 
     private Connection mConnection;
-    private static final String DEFAULT_DB_NAME = "jdbc:sqlite:C:/Buildings/Building.db";
+    public static final String DEFAULT_DB_PATH = "C:/Buildings/Building.db";
     public static final String OFFICE_TABLE = "office";
     public static final String LEVEL_TABLE = "level";
     public static final String SPECIAL_TABLE = "special";
@@ -20,7 +20,7 @@ public class DBHelper {
 
     public DBHelper() {
         try {
-            mConnection = DriverManager.getConnection(DEFAULT_DB_NAME);
+            mConnection = DriverManager.getConnection("jdbc:sqlite:" + DEFAULT_DB_PATH);
             createTables();
         } catch (SQLException e) {
             e.printStackTrace();
