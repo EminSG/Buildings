@@ -10,7 +10,7 @@ import io.ezorrio.buildings.model.Talk;
  */
 public class Utils {
 
-    public static String getRoomInfo(Room room, boolean showExtended){
+    public static String getRoomInfo(Room room, boolean showExtended) {
         if (showExtended) {
             if (room instanceof Office) {
                 return ((Office) room).getExtendedInfo();

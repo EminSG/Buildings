@@ -27,8 +27,8 @@ public class Special extends Room {
         this.type = type;
     }
 
-    public String typeToString(){
-        switch (type){
+    public String typeToString() {
+        switch (type) {
             case 0:
                 return "server";
             case 1:
@@ -40,7 +40,7 @@ public class Special extends Room {
         }
     }
 
-    public String getExtendedInfo(){
+    public String getExtendedInfo() {
         return getClass().getSimpleName() +
                 ": " + getId() +
                 "(capacity: " + getCapacity() +

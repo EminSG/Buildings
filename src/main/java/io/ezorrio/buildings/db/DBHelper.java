@@ -3,7 +3,6 @@ package io.ezorrio.buildings.db;
 import io.ezorrio.buildings.model.*;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 /**
  * Created by golde on 30.03.2017.
@@ -268,7 +267,6 @@ public class DBHelper {
                     rsLevels.getDouble("capacity"));
             result.addLevel(level);
         }
-        ArrayList<Room> roomList = new ArrayList<Room>();
         while (rsSpecials.next()) {
             //id,capacity,can_have_fire,fire_count,type,level
             Special special = new Special(rsSpecials.getDouble(2),

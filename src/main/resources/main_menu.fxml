@@ -1,0 +1,25 @@
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.CheckMenuItem?>
+<MenuBar xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.ezorrio.buildings.ui.MenuController">
+    <menus>
+        <Menu mnemonicParsing="false" text="File">
+            <items>
+                <MenuItem fx:id="menu_save" text="Save"/>
+                <MenuItem fx:id="menu_import" text="Import_path"/>
+                <MenuItem mnemonicParsing="false" text="Close"/>
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+            <items>
+                <CheckMenuItem fx:id="menu_show_extended" mnemonicParsing="false" text="Show as extended"/>
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+            <items>
+                <MenuItem mnemonicParsing="false" text="About"/>
+            </items>
+        </Menu>
+    </menus>
+</MenuBar>

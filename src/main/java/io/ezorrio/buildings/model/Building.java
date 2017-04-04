@@ -23,14 +23,14 @@ public class Building {
         return levels.get(level);
     }
 
-    public ArrayList<Level> getLevels(){
+    public ArrayList<Level> getLevels() {
         return levels;
     }
 
-    public ArrayList<Room> getRooms(){
+    public ArrayList<Room> getRooms() {
         ArrayList<Room> result = new ArrayList<Room>();
-        for (Level level : levels){
-            for (Room room : level.getRooms()){
+        for (Level level : levels) {
+            for (Room room : level.getRooms()) {
                 result.add(room);
             }
         }
@@ -88,7 +88,6 @@ public class Building {
             }
         }
     }
-
 
 
     public void save() {

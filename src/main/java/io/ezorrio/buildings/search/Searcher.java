@@ -5,7 +5,6 @@ import io.ezorrio.buildings.model.Room;
 import io.ezorrio.buildings.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by golde on 03.04.2017.

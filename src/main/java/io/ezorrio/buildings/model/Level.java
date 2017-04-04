@@ -2,7 +2,6 @@ package io.ezorrio.buildings.model;
 
 import io.ezorrio.buildings.exception.NoSpaceOnLevelException;
 
-
 import java.util.ArrayList;
 
 /**

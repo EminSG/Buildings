@@ -4,6 +4,12 @@ package io.ezorrio.buildings.model;
  * Created by golde on 30.03.2017.
  */
 public class Room {
+    public interface RoomType {
+        int OFFICE = 0;
+        int TALK = 1;
+        int SPECIAL = 2;
+    }
+
     private String id;
     private double capacity;
     private int roomLevel;
@@ -32,7 +38,7 @@ public class Room {
         return roomLevel;
     }
 
-    public void setRoomLevel(int level){
+    public void setRoomLevel(int level) {
         this.roomLevel = level;
     }
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.112" fx:controller="io.ezorrio.buildings.ui.SearchController">
+    <VBox spacing="10">
+        <HBox spacing="10">
+            <TextField fx:id="search_value" />
+            <MenuButton fx:id="search_criteria_menu" text="Choose search criteria">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#setByCapacity" text="By capacity" />
+                    <MenuItem mnemonicParsing="false" onAction="#setByRoomNumber" text="By room number" />
+                    <MenuItem mnemonicParsing="false" onAction="#setByFireCount" text="By fire sensors" />
+                </items>
+            </MenuButton>
+
+            <MenuButton fx:id="search_criteria_compare" text="Choose filter option">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#setSearchMore" text="More" />
+                    <MenuItem mnemonicParsing="false" onAction="#setSearchLess" text="Less" />
+                    <MenuItem mnemonicParsing="false" onAction="#setSearchEqual" text="Equals" />
+                </items>
+            </MenuButton>
+            <Button fx:id="button_search" text="Search!" />
+        </HBox>
+        <ListView fx:id="search_results" prefHeight="600.0" prefWidth="800.0" />
+    </VBox>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+   </padding>
+</AnchorPane>

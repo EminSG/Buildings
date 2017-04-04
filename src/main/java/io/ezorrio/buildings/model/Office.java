@@ -14,6 +14,7 @@ package io.ezorrio.buildings.model;
     2.2.1.7. Количество офисов в нутрии данного офиса – вычисляемый параметр.
      */
 public class Office extends Room {
+
     private String name;
     private boolean isOwner;
     private int innerOffices;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Spinner?>
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.112" fx:controller="io.ezorrio.buildings.ui.ModifyAddController">
+    <VBox spacing="10">
+        <MenuButton fx:id="modify_type" text="Room type:">
+            <items>
+                <MenuItem onAction="#setTypeOffice" text="Office room" />
+                <MenuItem onAction="#setTypeTalk" text="Talk Room" />
+                <MenuItem onAction="#setTypeSpecial" text="Special room" />
+            </items>
+        </MenuButton>
+        <!--<TextField fx:id="modify_input_room" promptText="Room №" />-->
+        <TextField fx:id="modify_input_capacity" promptText="Capacity" />
+        <TextField fx:id="modify_input_fire_count" promptText="Fire sensors count" />
+        <CheckBox fx:id="modify_input_can_have_fire" text="Can have fire sensors?" />
+        <TextField fx:id="modify_input_room_name" promptText="Office name" />
+        <MenuButton fx:id="modify_special_type" text="Special room type:">
+            <items>
+                <MenuItem onAction="#setTypeServer" text="Server" />
+                <MenuItem onAction="#setTypeSecurity" text="Security" />
+                <MenuItem onAction="#setTypeContainer" text="Container" />
+            </items>
+        </MenuButton>
+        <CheckBox fx:id="modify_input_is_owner" onAction="#setIsOwner" text="Owner" />
+        <CheckBox fx:id="modify_input_is_used" onAction="#setIsUsed" text="Used" />
+        <CheckBox fx:id="modify_input_can_presentate" onAction="#setCanPresentate" text="Has projector" />
+        <Button fx:id="modify_input_done" onAction="#addRoom" text="Add room!"/>
+    </VBox>
+</AnchorPane>
