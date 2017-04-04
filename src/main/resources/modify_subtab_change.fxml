@@ -6,11 +6,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Spinner?>
-<?import javafx.scene.text.Text?>
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.112" fx:controller="io.ezorrio.buildings.ui.ModifyChangeController">
     <VBox spacing="10">
-        <Text fx:id="modify_type"/>
-        <Spinner fx:id="modify_input_room"/>
+        <MenuButton fx:id="modify_type"/>
+        <!--<Spinner fx:id="modify_input_room"/>-->
         <TextField fx:id="modify_input_capacity" promptText="Capacity" />
         <TextField fx:id="modify_input_fire_count" promptText="Fire sensors count" />
         <CheckBox fx:id="modify_input_can_have_fire" text="Can have fire sensors?" />

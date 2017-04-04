@@ -2,6 +2,7 @@ package io.ezorrio.buildings.ui;
 
 import io.ezorrio.buildings.model.Room;
 import io.ezorrio.buildings.model.Special;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuButton;
@@ -15,8 +16,6 @@ public abstract class AbsModifyController extends Controller {
     protected MenuButton modify_type;
     @FXML
     protected MenuButton modify_special_type;
-    @FXML
-    protected TextField modify_input_room;
     @FXML
     protected TextField modify_input_capacity;
     @FXML

@@ -25,11 +25,11 @@ public class ModifyChangeController extends AbsModifyController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
-        modify_input_room.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory(FXCollections.observableArrayList(App.getBuilding().getRooms())));
-        modify_input_room.valueProperty().addListener((observable, oldValue, newValue) -> {
-            modified_room = newValue;
-            updateControls();
-        });
+//        modify_input_room.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory(FXCollections.observableArrayList(App.getBuilding().getRooms())));
+//        modify_input_room.valueProperty().addListener((observable, oldValue, newValue) -> {
+//            modified_room = newValue;
+//            updateControls();
+//        });
     }
 
     private void updateControls() {

@@ -22,11 +22,15 @@ public abstract class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        updateList();
     }
 
     protected void updateList() {
         Searcher searcher = new Searcher(App.getBuilding());
         ArrayList<String> rooms = searcher.sortRooms(getSortCriteria(), isNeedExtendedInfo());
+        if (building_rooms == null){
+            return;
+        }
         building_rooms.setItems(FXCollections.observableArrayList(rooms));
         building_rooms.refresh();
     }

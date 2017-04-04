@@ -33,7 +33,7 @@ public class MenuController extends Controller {
     }
 
     private void initMenu() {
-        Preferences.setNeedExtendedInfo(menu_show_extended.isSelected());
+        menu_show_extended.setOnAction(event -> Preferences.setNeedExtendedInfo(menu_show_extended.isSelected()));
         menu_save.setOnAction(event -> App.getBuilding().save());
         menu_import.setOnAction(event -> {
             TextInputDialog dialog = new TextInputDialog("Import DB path");
