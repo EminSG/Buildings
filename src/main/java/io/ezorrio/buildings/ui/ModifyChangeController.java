@@ -4,11 +4,8 @@ import io.ezorrio.buildings.model.Office;
 import io.ezorrio.buildings.model.Room;
 import io.ezorrio.buildings.model.Special;
 import io.ezorrio.buildings.model.Talk;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,7 +45,7 @@ public class ModifyChangeController extends AbsModifyController {
     }
 
     public void modifyRoom() {
-        switch (room_type) {
+        switch (type) {
             case Room.RoomType.OFFICE:
                 Office room = new Office(
                         Double.parseDouble(modify_input_capacity.getText()),
@@ -58,7 +55,7 @@ public class ModifyChangeController extends AbsModifyController {
                         modify_input_is_owner.isSelected(),
                         0);
                 App.getBuilding().addRoom(room);
-                updateList();
+                updateLists();
         }
     }
 }

@@ -19,20 +19,20 @@ public class BuildingController extends Controller {
     private void setByCapacity(ActionEvent event) {
         setSearchCriteria(Searcher.BuildingShowCriteria.BY_CAPACITY);
         sort_criteria_menu.setText("By capacity");
-        updateList();
+        updateLists();
     }
 
     @FXML
     private void setByRoomNumber(ActionEvent event) {
         setSearchCriteria(Searcher.BuildingShowCriteria.BY_ROOM_NUMBER);
         sort_criteria_menu.setText("By room number");
-        updateList();
+        updateLists();
     }
 
     @FXML
     private void setByFireCount(ActionEvent event) {
         setSearchCriteria(Searcher.BuildingShowCriteria.BY_FIRE_SENSOR);
         sort_criteria_menu.setText("By fire sensors");
-        updateList();
+        updateLists();
     }
 }

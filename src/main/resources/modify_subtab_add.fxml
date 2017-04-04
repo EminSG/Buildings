@@ -13,6 +13,7 @@
     <VBox spacing="10">
         <MenuButton fx:id="modify_type" text="Room type:">
             <items>
+                <MenuItem onAction="#setTypeLevel" text="Level" />
                 <MenuItem onAction="#setTypeOffice" text="Office room" />
                 <MenuItem onAction="#setTypeTalk" text="Talk Room" />
                 <MenuItem onAction="#setTypeSpecial" text="Special room" />

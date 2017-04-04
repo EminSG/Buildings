@@ -19,19 +19,22 @@ import static io.ezorrio.buildings.preferences.Preferences.isNeedExtendedInfo;
 public abstract class Controller implements Initializable {
     @FXML
     private ListView building_rooms;
+    @FXML
+    private ListView building_levels;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        updateList();
+        updateLists();
     }
 
-    protected void updateList() {
+    protected void updateLists() {
         Searcher searcher = new Searcher(App.getBuilding());
         ArrayList<String> rooms = searcher.sortRooms(getSortCriteria(), isNeedExtendedInfo());
         if (building_rooms == null){
             return;
         }
         building_rooms.setItems(FXCollections.observableArrayList(rooms));
+        building_levels.setItems(FXCollections.observableArrayList(App.getBuilding().getLevels()));
         building_rooms.refresh();
     }
 }

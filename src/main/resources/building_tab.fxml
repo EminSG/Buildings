@@ -3,6 +3,7 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <AnchorPane minHeight="0.0" minWidth="0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.ezorrio.buildings.ui.BuildingController">
     <VBox>
         <MenuButton fx:id="sort_criteria_menu" text="Sort by:">
@@ -12,6 +13,9 @@
                 <MenuItem mnemonicParsing="false" onAction="#setByFireCount" text="By fire sensors" />
             </items>
         </MenuButton>
-        <ListView fx:id="building_rooms" prefHeight="600.0" prefWidth="800.0"/>
+        <HBox spacing="10">
+            <ListView fx:id="building_rooms" prefHeight="600.0" prefWidth="600.0"/>
+            <ListView fx:id="building_levels" prefHeight="600.0" prefWidth="600.0"/>
+        </HBox>
     </VBox>
 </AnchorPane>

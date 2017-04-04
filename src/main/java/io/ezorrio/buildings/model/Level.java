@@ -74,5 +74,10 @@ public class Level {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Level " + getId() + " (" + capacity + ")";
+    }
 }
 

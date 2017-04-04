@@ -46,7 +46,7 @@ public class MenuController extends Controller {
                 DBHelper helper = new DBHelper(getImportPath());
                 try {
                     App.setBuilding(helper.importFromDB());
-                    updateList();
+                    updateLists();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

@@ -8,7 +8,7 @@
       xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <fx:include source="main_menu.fxml"/>
-        <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane prefHeight="600.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Building Plan">
                     <fx:include source="building_tab.fxml"/>
