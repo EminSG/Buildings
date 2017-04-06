@@ -30,20 +30,20 @@ public class Office extends Room {
         return name;
     }
 
-    public boolean isOwner() {
-        return isOwner;
-    }
-
-    public int getInnerOffices() {
-        return innerOffices;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
+    public boolean isOwner() {
+        return isOwner;
+    }
+
     public void setOwner(boolean owner) {
         isOwner = owner;
+    }
+
+    public int getInnerOffices() {
+        return innerOffices;
     }
 
     public String getExtendedInfo() {

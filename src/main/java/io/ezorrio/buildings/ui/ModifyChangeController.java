@@ -4,8 +4,9 @@ import io.ezorrio.buildings.model.Office;
 import io.ezorrio.buildings.model.Room;
 import io.ezorrio.buildings.model.Special;
 import io.ezorrio.buildings.model.Talk;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Spinner;
+import javafx.scene.control.Button;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,19 +15,23 @@ import java.util.ResourceBundle;
  * Created by golde on 04.04.2017.
  */
 public class ModifyChangeController extends AbsModifyController {
-    private Object modified_room;
+    private Room modified_room;
     @FXML
-    private Spinner modify_input_room;
-
+    private Button modify_input_done;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
-//        modify_input_room.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory(FXCollections.observableArrayList(App.getBuilding().getRooms())));
-//        modify_input_room.valueProperty().addListener((observable, oldValue, newValue) -> {
-//            modified_room = newValue;
-//            updateControls();
-//        });
+        if (modify_input_room == null) {
+            return;
+        }
+        modify_input_room.textProperty().addListener((observable, oldValue, newValue) -> Platform.runLater(() -> {
+            modified_room = App.getBuilding().getRoomById(newValue);
+            if (modified_room != null) {
+                updateControls();
+            }
+        }));
+        modify_input_done.setOnAction(event -> modifyRoom());
     }
 
     private void updateControls() {
@@ -45,17 +50,25 @@ public class ModifyChangeController extends AbsModifyController {
     }
 
     public void modifyRoom() {
+        if (modified_room == null) {
+            showErrorDialog("Room" + modify_input_room.getId() + " not found");
+        }
+
+        modified_room.setCapacity(Double.parseDouble(modify_input_capacity.getText()));
+        modified_room.setCanHaveFire(modify_input_can_have_fire.isSelected());
+        modified_room.setFireCount(Integer.parseInt(modify_input_fire_count.getText()));
         switch (type) {
             case Room.RoomType.OFFICE:
-                Office room = new Office(
-                        Double.parseDouble(modify_input_capacity.getText()),
-                        modify_input_can_have_fire.isSelected(),
-                        Integer.parseInt(modify_input_fire_count.getText()),
-                        modify_input_room_name.getText(),
-                        modify_input_is_owner.isSelected(),
-                        0);
-                App.getBuilding().addRoom(room);
-                updateLists();
+                ((Office) modified_room).setName(modify_input_room_name.getText());
+                ((Office) modified_room).setOwner(modify_input_is_owner.isSelected());
+                break;
+            case Room.RoomType.TALK:
+                ((Talk) modified_room).setCanPresentate(modify_input_can_presentate.isSelected());
+                ((Talk) modified_room).setUsed(modify_input_is_used.isSelected());
+            case Room.RoomType.SPECIAL:
+                ((Special) modified_room).setType(Integer.parseInt(modify_special_type.getText()));
+                break;
         }
+        updateLists();
     }
 }

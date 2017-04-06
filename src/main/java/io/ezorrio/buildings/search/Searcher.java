@@ -32,12 +32,6 @@ public class Searcher {
         return result;
     }
 
-    public interface BuildingShowCriteria {
-        int BY_CAPACITY = 0;
-        int BY_ROOM_NUMBER = 1;
-        int BY_FIRE_SENSOR = 2;
-    }
-
     public ArrayList<String> sortRooms(final int criteria, boolean showExtended) {
         building.getRooms().sort((o1, o2) -> {
             switch (criteria) {
@@ -51,12 +45,6 @@ public class Searcher {
             return 0;
         });
         return getAllRoomsInfo(showExtended);
-    }
-
-    public interface FilterType {
-        int MORE = 1;
-        int LESS = -1;
-        int EQUAL = 0;
     }
 
     public ArrayList<String> filterRooms(final int criteria, final int filterType, String filterValue, boolean showAsExtended) {
@@ -109,5 +97,17 @@ public class Searcher {
             }
         }
         return result;
+    }
+
+    public interface BuildingShowCriteria {
+        int BY_CAPACITY = 0;
+        int BY_ROOM_NUMBER = 1;
+        int BY_FIRE_SENSOR = 2;
+    }
+
+    public interface FilterType {
+        int MORE = 1;
+        int LESS = -1;
+        int EQUAL = 0;
     }
 }

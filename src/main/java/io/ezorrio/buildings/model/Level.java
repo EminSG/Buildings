@@ -38,13 +38,17 @@ public class Level {
         return rooms;
     }
 
-    public void addRoom(Room newRoom) {
+    public void addRoom(Room newRoom) throws NoSpaceOnLevelException {
         newRoom.setId(id + "-" + rooms.size());
         if (capacity < roomsTotalCapacity() + newRoom.getCapacity()) {
             throw new NoSpaceOnLevelException(roomsTotalCapacity() + newRoom.getCapacity() - capacity);
         } else {
             rooms.add(newRoom);
         }
+    }
+
+    public void removeRoom(Room room){
+        getRooms().remove(room);
     }
 
     public boolean isLevelFull() {
@@ -59,12 +63,12 @@ public class Level {
         return roomsTotalCapacity;
     }
 
-    public void setCapacity(double capacity) {
-        this.capacity = capacity;
-    }
-
     public double getCapacity() {
         return capacity;
+    }
+
+    public void setCapacity(double capacity) {
+        this.capacity = capacity;
     }
 
     public int getId() {

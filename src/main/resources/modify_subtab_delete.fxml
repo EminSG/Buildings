@@ -1,9 +1,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.ezorrio.buildings.ui.ModifyDeleteController">
     <VBox spacing="10">
-        <TextField fx:id="modify_input_room" promptText="Room №"/>
+        <MenuButton fx:id="modify_input_delete_type">
+            <MenuItem onAction="#setTypeLevel" text="Level" />
+            <MenuItem onAction="#setTypeRoom" text="Room" />
+        </MenuButton>
+        <TextField fx:id="modify_input_room" promptText="Level/Room №"/>
+        <Button fx:id="modify_input_delete" text="Delete!"/>
     </VBox>
 </AnchorPane>

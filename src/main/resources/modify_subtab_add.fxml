@@ -34,6 +34,6 @@
         <CheckBox fx:id="modify_input_is_owner" onAction="#setIsOwner" text="Owner" />
         <CheckBox fx:id="modify_input_is_used" onAction="#setIsUsed" text="Used" />
         <CheckBox fx:id="modify_input_can_presentate" onAction="#setCanPresentate" text="Has projector" />
-        <Button fx:id="modify_input_done" onAction="#addRoom" text="Add room!"/>
+        <Button fx:id="modify_input_done" text="Add!"/>
     </VBox>
 </AnchorPane>

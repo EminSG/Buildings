@@ -4,6 +4,8 @@ import io.ezorrio.buildings.search.Searcher;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
@@ -30,11 +32,19 @@ public abstract class Controller implements Initializable {
     protected void updateLists() {
         Searcher searcher = new Searcher(App.getBuilding());
         ArrayList<String> rooms = searcher.sortRooms(getSortCriteria(), isNeedExtendedInfo());
-        if (building_rooms == null){
+        if (building_rooms == null) {
             return;
         }
         building_rooms.setItems(FXCollections.observableArrayList(rooms));
         building_levels.setItems(FXCollections.observableArrayList(App.getBuilding().getLevels()));
         building_rooms.refresh();
+    }
+
+    protected void showErrorDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.YES);
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.YES) {
+            alert.close();
+        }
     }
 }

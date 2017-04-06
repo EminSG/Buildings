@@ -11,6 +11,10 @@ import javafx.scene.control.TextField;
  * Created by golde on 05.04.2017.
  */
 public abstract class AbsModifyController extends Controller {
+    public static final int TYPE_LEVEL = 1000;
+    public static final int TYPE_ROOM = 1001;
+    @FXML
+    protected TextField modify_input_room;
     @FXML
     protected MenuButton modify_type;
     @FXML
@@ -29,14 +33,11 @@ public abstract class AbsModifyController extends Controller {
     protected CheckBox modify_input_can_have_fire;
     @FXML
     protected CheckBox modify_input_can_presentate;
-
     protected int type;
     protected int special_room_type;
     protected boolean isOwner;
     protected boolean isUsed;
     protected boolean canPresentate;
-
-    public static final int TYPE_LEVEL = -1;
 
     public void setTypeLevel() {
         type = TYPE_LEVEL;

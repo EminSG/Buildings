@@ -17,6 +17,10 @@ public class Talk extends Room {
         return isUsed;
     }
 
+    public void setUsed(boolean used) {
+        isUsed = used;
+    }
+
     public boolean canPresentate() {
         return canPresentate;
     }
@@ -28,5 +32,9 @@ public class Talk extends Room {
                 ", fires count: " + getFireCount() +
                 ", canPresentate: " + canPresentate() +
                 ", isUsed: " + isUsed() + ")";
+    }
+
+    public void setCanPresentate(boolean canPresentate) {
+        this.canPresentate = canPresentate;
     }
 }

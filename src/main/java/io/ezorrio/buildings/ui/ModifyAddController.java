@@ -1,6 +1,9 @@
 package io.ezorrio.buildings.ui;
 
+import io.ezorrio.buildings.exception.NoSpaceOnLevelException;
 import io.ezorrio.buildings.model.*;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,13 +12,22 @@ import java.util.ResourceBundle;
  * Created by golde on 04.04.2017.
  */
 public class ModifyAddController extends AbsModifyController {
+    @FXML
+    private Button modify_input_done;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
+        modify_input_done.setOnAction(event -> {
+            try {
+                addRoom();
+            } catch (NoSpaceOnLevelException e) {
+                showErrorDialog(e.getMessage());
+            }
+        });
     }
 
-    public void addRoom() {
+    public void addRoom() throws NoSpaceOnLevelException {
         switch (type) {
             case TYPE_LEVEL:
                 Level level = new Level(Double.parseDouble(modify_input_capacity.getText()));

@@ -4,11 +4,10 @@ package io.ezorrio.buildings.model;
  * Created by golde on 30.03.2017.
  */
 public class Special extends Room {
-    private int type;
-
     public static final int SERVER = 0;
     public static final int SECURITY = 1;
     public static final int CONTAINER = 2;
+    private int type;
 
     /**
      * @param type one of constant value(SERVER/SECURITY/CONTAINER)

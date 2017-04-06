@@ -1,5 +1,6 @@
 package io.ezorrio.buildings.db;
 
+import io.ezorrio.buildings.exception.NoSpaceOnLevelException;
 import io.ezorrio.buildings.model.*;
 
 import java.sql.*;
@@ -9,12 +10,12 @@ import java.sql.*;
  */
 public class DBHelper {
 
-    private Connection mConnection;
     public static final String DEFAULT_DB_PATH = "C:/Buildings/Building.db";
     public static final String OFFICE_TABLE = "office";
     public static final String LEVEL_TABLE = "level";
     public static final String SPECIAL_TABLE = "special";
     public static final String TALK_TABLE = "talk";
+    private Connection mConnection;
 
 
     public DBHelper() {
@@ -254,7 +255,7 @@ public class DBHelper {
     private void dropAllTables() {
     }
 
-    public Building importFromDB() throws SQLException {
+    public Building importFromDB() throws SQLException, NoSpaceOnLevelException {
         Building result = new Building();
         ResultSet rsLevels = mConnection.createStatement().executeQuery("SELECT * FROM " + LEVEL_TABLE);
         ResultSet rsOffices = mConnection.createStatement().executeQuery("SELECT * FROM " + OFFICE_TABLE);
